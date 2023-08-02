@@ -53,7 +53,7 @@ exports.createTicket = async (req, res) => {
     }
   } catch (err) {
     return res.status(500).send({
-      message: "Some internal server error occured",
+      message: "Some internal server error occured" + err.message,
     });
   }
 };
