@@ -44,14 +44,14 @@ exports.signup = async (req, res) => {
 
 exports.signin = async (req, res) => {
   const user = await User.findOne({ userId: req.body.userId });
-  if (!user) {
+  if (user == null) {
     res.status(400).send({
       message: "Failed! UserId doesn't exist",
     });
     return;
   }
 
-  if (user.userStatus != constants.userStatus.approved) {
+  if (user.userStatus != "APPROVED") {
     res.status(403).send({
       message: "Can't allow user to login as the status is " + user.userStatus,
     });
@@ -66,7 +66,7 @@ exports.signin = async (req, res) => {
       message: "Password provided is invalid",
     });
   }
-
+  console.log(user.userId);
   var token = jwt.sign({ id: user.userId }, authConfig.secretKey, {
     expiresIn: 86400,
   });
