@@ -64,7 +64,7 @@ const signInmiddleware = async (req, res) => {
     });
     return;
   }
-  if (!req.body.passowrd) {
+  if (!req.body.password) {
     res.status(400).send({
       message: "Failed! password is not provided",
     });
