@@ -7,9 +7,5 @@ module.exports = function (app) {
     [verifySignUp.validateSignUpRequest],
     authController.signup
   );
-  app.post(
-    "/crm/api/v1/auth/signin",
-    [verifySignUp.signInmiddleware],
-    authController.signin
-  );
+  app.post("/crm/api/v1/auth/signin", authController.signin);
 };
